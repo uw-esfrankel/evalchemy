@@ -97,7 +97,7 @@ huggingface-cli download mlfoundations-dev/evalset_2870 --repo-type dataset
 huggingface-cli download open-thoughts/OpenThinker-7B
 
 # Request an interactive node for testing
-salloc --nodes=1 --ntasks-per-node=1 --account=EUHPC_E03_068 --partition=boost_usr_prod --qos=boost_qos_dbg --gres=gpu:1
+salloc --nodes=1 --ntasks-per-node=1 --account=EUHPC_E03_068 --partition=boost_usr_prod --qos=boost_qos_dbg --gres=gpu:1 --cpus-per-task=32
 
 # Verify GPU is available
 srun bash -c 'nvidia-smi'
