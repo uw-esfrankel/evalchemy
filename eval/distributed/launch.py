@@ -606,7 +606,7 @@ def main():
     task_hash = generate_task_hash(tasks)
     remaining_characters = 96 - len(f"_eval_{timestamp}_{task_hash}")
     model_name_short = args.model_name.split("/")[-1][:remaining_characters]
-    output_dataset = f"mlfoundations-dev/{model_name_short}_eval_{timestamp}_{task_hash}"
+    output_dataset = f"mlfoundations-dev/{model_name_short}_{timestamp}_eval_{task_hash}"
 
     # Create or get cached evaluation dataset
     input_dataset = create_evaluation_dataset(tasks)
