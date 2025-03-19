@@ -602,9 +602,10 @@ def main():
         sys.exit(1)
 
     # Generate timestamp and repository ID for results
-    timestamp = datetime.datetime.now().strftime("%m-%d-%y_%H-%M-%S")
-    model_name_short = args.model_name.split("/")[-1]
+    timestamp = str(int(time.time()))
     task_hash = generate_task_hash(tasks)
+    remaining_characters = 96 - len(f"mlfoundations-dev/_eval_{timestamp}_{task_hash}")
+    model_name_short = args.model_name.split("/")[-1][:remaining_characters]
     output_dataset = f"mlfoundations-dev/{model_name_short}_eval_{timestamp}_{task_hash}"
 
     # Create or get cached evaluation dataset
@@ -615,11 +616,11 @@ def main():
     print_header("Preparing for SBATCH Job")
 
     # Output directories
-    repo_name = output_dataset.split("/")[-1]
-    logs_dir = os.path.join("logs", repo_name)
+    output_dataset_repo_name = output_dataset.split("/")[-1]
+    logs_dir = os.path.join("logs", output_dataset_repo_name)
     os.makedirs(logs_dir, exist_ok=True)
     print_info(f"Logs directory: {logs_dir}")
-    output_dataset_dir = os.path.join("results", repo_name)
+    output_dataset_dir = os.path.join("results", output_dataset_repo_name)
     os.makedirs(output_dataset_dir, exist_ok=True)
     print_info(f"Output dataset directory: {output_dataset_dir}")
 
