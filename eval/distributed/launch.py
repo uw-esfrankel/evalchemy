@@ -194,7 +194,7 @@ def create_evaluation_dataset(tasks):
         "This may take a while the first time the eval datasets are downloaded and parsed. Consider running locally with more cpus."
     )
     tasks_str = ",".join(tasks)
-    cmd = f"OPENAI_API_KEY=NONE python -m eval.eval --model upload_to_hf --tasks {tasks_str} --model_args repo_id={cached_dataset_id} --output_path logs"
+    cmd = f"python -m eval.eval --model upload_to_hf --tasks {tasks_str} --model_args repo_id={cached_dataset_id} --output_path logs"
 
     stdout, stderr, return_code = execute_command(cmd)
 
@@ -554,7 +554,7 @@ def compute_and_upload_scores(tasks, output_repo_id, model_name):
         print_warning("LiveCodeBench evaluation takes ~15mins")
 
     tasks_str = ",".join(tasks)
-    cmd = f'OPENAI_API_KEY=NONE python -m eval.eval --model precomputed_hf --model_args "repo_id={output_repo_id}",model="{model_name}" --tasks {tasks_str} --output_path logs --use_database'
+    cmd = f'python -m eval.eval --model precomputed_hf --model_args "repo_id={output_repo_id}",model="{model_name}" --tasks {tasks_str} --output_path logs --use_database'
 
     stdout, stderr, return_code = execute_command(cmd)
 
