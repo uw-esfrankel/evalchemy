@@ -15,12 +15,12 @@ Follow these steps to set up the environment on Leonardo:
 ```bash
 # Set up environment variables in your .bashrc for easier access
 cat << 'EOF' >> ~/.bashrc
-DCFT=$WORK/DCFT_shared
-EVALCHEMY=$DCFT/evalchemy/
-DCFT_MAMBA=$DCFT/mamba
-EVALCHEMY_GPU_ENV=$EVALCHEMY/env/cu121-evalchemy
-EVALCHEMY_CPU_ENV=$EVALCHEMY/env/cpu-evalchemy
-HF_HUB_CACHE=$DCFT/hub
+export DCFT=$WORK/DCFT_shared
+export EVALCHEMY=$DCFT/evalchemy/
+export DCFT_MAMBA=$DCFT/mamba
+export EVALCHEMY_GPU_ENV=$EVALCHEMY/env/cu121-evalchemy
+export EVALCHEMY_CPU_ENV=$EVALCHEMY/env/cpu-evalchemy
+export HF_HUB_CACHE=$DCFT/hub
 EOF
 source ~/.bashrc
 
