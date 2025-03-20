@@ -87,7 +87,7 @@ def check_required_env_vars():
     cmd = "echo $HOSTNAME"
     hostname, _, _ = execute_command(cmd, verbose=False)
     print_info(f"Using $HOSTNAME: {hostname} to determine which HF_HUB_CACHE to use")
-    if "c1" in hostname:
+    if "c1" in hostname or "c2" in hostname:
         hf_hub_cache = "/data/horse/ws/ryma833h-DCFT_Shared/huggingface/hub"
         print_info(f"Detected Capella environment, using HF_HUB_CACHE: {hf_hub_cache}")
     elif "leonardo" in hostname:
@@ -135,7 +135,7 @@ def check_conda_env(watchdog=False):
     cmd = "echo $HOSTNAME"
     hostname, _, _ = execute_command(cmd, verbose=False)
     print_info(f"Using $HOSTNAME: {hostname} to determine which conda environment we should be in")
-    if "c1" in hostname:
+    if "c1" in hostname or "c2" in hostname:
         python_path = "/data/horse/ws/ryma833h-DCFT_Shared/miniconda3/envs/evalchemy/bin/python3.10"
         activate_cmd = "source /data/horse/ws/ryma833h-DCFT_Shared/miniconda3/bin/activate && conda activate evalchemy"
         print_info(f"Detected Capella environment, checking python path: {python_path}")
@@ -246,7 +246,7 @@ def launch_sbatch(
     cmd = "echo $HOSTNAME"
     hostname, _, _ = execute_command(cmd, verbose=False)
     print_info(f"Using $HOSTNAME: {hostname} to determine which sbatch script to use")
-    if "c1" in hostname:
+    if "c1" in hostname or "c2" in hostname:
         sbatch_script = "eval/distributed/process_shards_capella.sbatch"
         print_info("Detected Capella environment, using process_shards_capella.sbatch")
     elif "leonardo" in hostname:
